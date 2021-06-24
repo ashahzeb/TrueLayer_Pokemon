@@ -12,8 +12,8 @@ namespace RestAPI.Extensions
         public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration) =>
             services
                 .AddDomain()
+                .AddInfrastructure(configuration)
                 .AddPersistence()
-                .AddMediatR(typeof(ServiceCollectionExtensions).Assembly)
-                .AddMediatorRequestLogging();
+                .AddMediatR(typeof(ServiceCollectionExtensions).Assembly);
     }
 }

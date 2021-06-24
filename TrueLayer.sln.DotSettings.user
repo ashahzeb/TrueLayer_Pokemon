@@ -1,0 +1,12 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bbb1bd31_002Dd4e7_002D4020_002D85ac_002D5c7a59749d66/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ReturnStatusCodeOk_When_GetPokemonSpeciesIsCalled_And_PokemonExists" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::63952DCB-7204-4BE1-B3AE-0F87C463CE6F::net5.0::Infrastructure.UnitTests.HttpClients.PokerApiHttpClient_Should.ReturnStatusCodeOk_When_GetPokemonSpeciesIsCalled_And_PokemonExists&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::63952DCB-7204-4BE1-B3AE-0F87C463CE6F::net5.0::Infrastructure.UnitTests.HttpClients.PokerApiHttpClient_Should.ReturnStatusCodeNotFound_When_GetPokemonSpeciesIsCalled_And_PokemonDoesNotExist&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::63952DCB-7204-4BE1-B3AE-0F87C463CE6F::net5.0::Infrastructure.UnitTests.HttpClients.TranslationApiHttpClient_Should.ReturnTranslatedText_When_GetYodaTranslationIsCalled&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::63952DCB-7204-4BE1-B3AE-0F87C463CE6F::net5.0::Infrastructure.UnitTests.HttpClients.TranslationApiHttpClient_Should.ReturnTranslatedText_When_GetShakespeareTranslationIsCalled&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::63952DCB-7204-4BE1-B3AE-0F87C463CE6F::net5.0::Infrastructure.UnitTests.HttpClients.TranslationApiHttpClient_Should.ReturnSameText_When_GetShakespeareTranslationIsCalled_And_ResponseIsTooManyRequest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::63952DCB-7204-4BE1-B3AE-0F87C463CE6F::net5.0::Infrastructure.UnitTests.HttpClients.TranslationApiHttpClient_Should.ReturnSameText_When_GetYodaTranslationIsCalled_And_ResponseIsTooManyRequest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::63952DCB-7204-4BE1-B3AE-0F87C463CE6F::net5.0::Infrastructure.UnitTests.HttpClients.PokemonApiHttpClient_Should&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
