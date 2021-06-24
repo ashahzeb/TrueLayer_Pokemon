@@ -6,7 +6,7 @@ using Infrastructure.Configuration;
 
 namespace Infrastructure.HttpClients
 {
-    public class PokemonApiHttpClient
+    public class PokemonApiHttpClient : IPokemonApiHttpClient
     {
         private readonly HttpClient _httpClient;
         private readonly IHttpClientConfiguration _httpClientConfiguration;

@@ -8,40 +8,17 @@ using Infrastructure.Configuration;
 using Infrastructure.HttpClients;
 using Moq;
 using Moq.Protected;
+using TestHelper;
 using Xunit;
 
 namespace Infrastructure.UnitTests.HttpClients
 {
     public class PokemonApiHttpClient_Should
     {
-        private const string baseUri = "https://pokeapi.co/api/v2/";
-        private const string pokemonSpeciesEndpoint = "pokemon-species/";
-        
         [Fact]
         public async Task ReturnStatusCodeOk_When_GetPokemonSpeciesIsCalled_And_PokemonExists()
         {
-            var handlerMock = new Mock<HttpMessageHandler>();
-            var response = new HttpResponseMessage
-            {
-                StatusCode = HttpStatusCode.OK
-            };
-
-            handlerMock
-                .Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(response);
-
-            var httpClient = new HttpClient(handlerMock.Object);
-            httpClient.BaseAddress = new Uri(baseUri);
-            var httpClientConfiguration = new HttpClientConfiguration
-            {
-                PokemonSpeciesEndpoint = pokemonSpeciesEndpoint
-            };
-            
-            var pokerApiClient = new PokemonApiHttpClient(httpClient, httpClientConfiguration);
+            var (pokerApiClient, handlerMock) = TestDataBuilder.CreatePokemonApiHttpClient(HttpStatusCode.OK);
 
             var pokemonSpecies = await pokerApiClient.GetPokemonSpecies("pikachu");
             
@@ -58,28 +35,7 @@ namespace Infrastructure.UnitTests.HttpClients
         [AutoData]
         public async Task ReturnStatusCodeNotFound_When_GetPokemonSpeciesIsCalled_And_PokemonDoesNotExist(string name)
         {
-            var handlerMock = new Mock<HttpMessageHandler>();
-            var response = new HttpResponseMessage
-            {
-                StatusCode = HttpStatusCode.NotFound
-            };
-
-            handlerMock
-                .Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(response);
-
-            var httpClient = new HttpClient(handlerMock.Object);
-            httpClient.BaseAddress = new Uri("https://pokeapi.co/api/v2/");
-            var httpClientConfiguration = new HttpClientConfiguration
-            {
-                PokemonSpeciesEndpoint = "pokemon-species/"
-            };
-            
-            var pokerApiClient = new PokemonApiHttpClient(httpClient, httpClientConfiguration);
+            var (pokerApiClient, handlerMock) = TestDataBuilder.CreatePokemonApiHttpClient(HttpStatusCode.NotFound);
 
             var exception = await Assert.ThrowsAsync<HttpRequestException>(() => pokerApiClient.GetPokemonSpecies(name));
             

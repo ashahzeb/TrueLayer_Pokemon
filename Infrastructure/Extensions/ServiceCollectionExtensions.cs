@@ -16,8 +16,8 @@ namespace Infrastructure.Extensions
         {
             services.AddMediatorRequestLogging()
                 .AddConfiguration<IHttpClientConfiguration, HttpClientConfiguration>(configuration)
-                .AddTransient<PokemonApiHttpClient>()
-                .AddTransient<TranslationApiHttpClient>();
+                .AddTransient<IPokemonApiHttpClient, PokemonApiHttpClient>()
+                .AddTransient<ITranslationApiHttpClient, TranslationApiHttpClient>();
 
             services.AddHttpClient<PokemonApiHttpClient>((provider, client) =>
                 client.BaseAddress = new Uri(provider.GetService<IHttpClientConfiguration>().PokemonApiBaseUrl));

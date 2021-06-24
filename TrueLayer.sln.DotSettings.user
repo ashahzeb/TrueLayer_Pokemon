@@ -8,5 +8,8 @@
     &lt;TestId&gt;xUnit::63952DCB-7204-4BE1-B3AE-0F87C463CE6F::net5.0::Infrastructure.UnitTests.HttpClients.TranslationApiHttpClient_Should.ReturnSameText_When_GetShakespeareTranslationIsCalled_And_ResponseIsTooManyRequest&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::63952DCB-7204-4BE1-B3AE-0F87C463CE6F::net5.0::Infrastructure.UnitTests.HttpClients.TranslationApiHttpClient_Should.ReturnSameText_When_GetYodaTranslationIsCalled_And_ResponseIsTooManyRequest&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::63952DCB-7204-4BE1-B3AE-0F87C463CE6F::net5.0::Infrastructure.UnitTests.HttpClients.PokemonApiHttpClient_Should&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::14DCF018-5DDA-43B5-9CD4-28180A7AFF4F::net5.0::Persistence.UnitTests.Repositories.PokemonRepository_Should.Get_Successfully&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::14DCF018-5DDA-43B5-9CD4-28180A7AFF4F::net5.0::Persistence.UnitTests.Repositories.PokemonRepository_Should.ReturnPokemon_When_ApiResponseIsCorrect&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::14DCF018-5DDA-43B5-9CD4-28180A7AFF4F::net5.0::Persistence.UnitTests.Repositories.PokemonRepository_Should.ThrowException_When_ApiResponseHasADifferentStructure&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
