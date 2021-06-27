@@ -5,12 +5,12 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Domain.Abstraction;
-using Domain.Entity;
+using Domain.Entities;
 using Infrastructure.HttpClients;
 
 namespace Persistence.Repositories
 {
-    public class PokemonRepository
+    public class PokemonRepository : IPokemonRepository
     {
         private readonly IPokemonApiHttpClient _pokemonApiHttpClient;
 
@@ -19,27 +19,12 @@ namespace Persistence.Repositories
             _pokemonApiHttpClient = pokemonApiHttpClient;
         }
 
-        public async Task<IPokemon> GetPokemon(string name, string language = "en")
+        public async Task<Pokemon> GetPokemon(string name, string language = "en")
         {
-            var httpResponseMessage = await _pokemonApiHttpClient.GetPokemonSpecies(name);
-
-            IPokemon pokemon;
-            
-            try
-            {
-                using (var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync())
-                {
-                    pokemon = await JsonSerializer.DeserializeAsync<Pokemon>(contentStream, new JsonSerializerOptions());
-                }
-                
-                pokemon.Name = name;
-                pokemon.Description = pokemon.Flavors.FirstOrDefault(fte => fte.Language.Name == language)?.FlavorText;
-                return pokemon;
-            }
-            catch (Exception ex)
-            {
-                throw new HttpRequestException(ex.Message, ex, HttpStatusCode.InternalServerError);
-            }
+            var pokemon = await _pokemonApiHttpClient.GetPokemonSpecies(name);
+            pokemon.Name = name;
+            pokemon.Description = pokemon.Flavors.FirstOrDefault(f => f.Language.Name == language)?.FlavorText;
+            return pokemon;
         }
     }
 }

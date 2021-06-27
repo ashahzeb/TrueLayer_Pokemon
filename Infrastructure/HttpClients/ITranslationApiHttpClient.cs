@@ -1,11 +1,12 @@
 using System.Threading.Tasks;
+using Domain.Entities;
 
 namespace Infrastructure.HttpClients
 {
     public interface ITranslationApiHttpClient
     {
-        Task<string> GetYodaTranslation(string text);
+        Task<TranslationApiResponse> GetYodaTranslation(string text);
 
-        Task<string> GetShakespeareTranslation(string text);
+        Task<TranslationApiResponse> GetShakespeareTranslation(string text);
     }
 }

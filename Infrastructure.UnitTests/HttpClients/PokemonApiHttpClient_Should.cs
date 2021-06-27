@@ -1,10 +1,8 @@
-using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoFixture.Xunit2;
-using Infrastructure.Configuration;
 using Infrastructure.HttpClients;
 using Moq;
 using Moq.Protected;
@@ -15,20 +13,13 @@ namespace Infrastructure.UnitTests.HttpClients
 {
     public class PokemonApiHttpClient_Should
     {
-        [Fact]
-        public async Task ReturnStatusCodeOk_When_GetPokemonSpeciesIsCalled_And_PokemonExists()
+        [Theory]
+        [AutoMoqData]
+        public async Task ReturnStatusCodeOk_When_GetPokemonSpeciesIsCalled_And_PokemonExists(IPokemonApiHttpClient pokerApiClient)
         {
-            var (pokerApiClient, handlerMock) = TestDataBuilder.CreatePokemonApiHttpClient(HttpStatusCode.OK);
-
             var pokemonSpecies = await pokerApiClient.GetPokemonSpecies("pikachu");
             
             Assert.NotNull(pokemonSpecies);
-            
-            handlerMock.Protected().Verify(
-                "SendAsync",
-                Times.Exactly(1),
-                ItExpr.Is<HttpRequestMessage>(req => req.Method == HttpMethod.Get),
-                ItExpr.IsAny<CancellationToken>());
         }
         
         [Theory]

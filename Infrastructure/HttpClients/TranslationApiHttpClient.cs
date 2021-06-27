@@ -2,7 +2,9 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Domain.Entities;
 using Infrastructure.Configuration;
 
 namespace Infrastructure.HttpClients
@@ -18,38 +20,24 @@ namespace Infrastructure.HttpClients
             _httpClientConfiguration = httpClientConfiguration;
         }
 
-        public async Task<string> GetShakespeareTranslation(string text)
+        public async Task<TranslationApiResponse> GetShakespeareTranslation(string text)
         {
             return await Translate(_httpClientConfiguration.ShakespeareTranslatorEndpoint, text);
         }
         
-        public async Task<string> GetYodaTranslation(string text)
+        public async Task<TranslationApiResponse> GetYodaTranslation(string text)
         {
             return await Translate(_httpClientConfiguration.YodaTranslatorEndpoint, text);
         }
 
-        private async Task<string> Translate(string endpoint, string text)
+        private async Task<TranslationApiResponse> Translate(string endpoint, string text)
         {
-            HttpResponseMessage response = null;
-            try
-            {
-                var payload = new {text};
-                response =
-                    await _httpClient.PostAsJsonAsync($"{endpoint}{text.Trim()}", payload);
+            var payload = new {text};
+            var response = await _httpClient.PostAsJsonAsync($"{endpoint}", payload);
 
-                response.EnsureSuccessStatusCode();
-
-                return await response.Content.ReadAsStringAsync();
-            }
-            catch (Exception ex)
-            {
-                if (response?.StatusCode == HttpStatusCode.TooManyRequests)
-                {
-                    return text;
-                }
-
-                throw;
-            }
+            using var contentStream = await response.Content.ReadAsStreamAsync();
+            return await JsonSerializer.DeserializeAsync<TranslationApiResponse>(contentStream,
+                new JsonSerializerOptions());
         }
     }
 }

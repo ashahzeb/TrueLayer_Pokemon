@@ -13,24 +13,11 @@ namespace Persistence.UnitTests.Repositories
 {
     public class PokemonRepository_Should
     {
-        private static string GetPokemonSampleResponse()
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = assembly.GetName().Name + ".Resources.PokemonApiResponse.json";
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-            {
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    return reader.ReadToEnd();
-                }
-            }
-        }
-
         [Theory]
         [InlineData("Pikachu")]
         public async Task ReturnPokemon_When_ApiResponseIsCorrect(string name)
         {
-            var (client, mockHandler) = TestDataBuilder.CreatePokemonApiHttpClient(HttpStatusCode.OK, GetPokemonSampleResponse());
+            var (client, mockHandler) = TestDataBuilder.CreatePokemonApiHttpClient(HttpStatusCode.OK, TestDataBuilder.GetPokemonSampleResponse());
 
             var repository = new PokemonRepository(client);
             IPokemon pokemon = await repository.GetPokemon(name);
@@ -49,7 +36,7 @@ namespace Persistence.UnitTests.Repositories
 
             var exception = await Assert.ThrowsAsync<HttpRequestException>(() => repository.GetPokemon(name));
             
-            Assert.Equal(HttpStatusCode.InternalServerError, exception.StatusCode);
+            Assert.Equal(HttpStatusCode.UnprocessableEntity, exception.StatusCode);
         }
     }
 }

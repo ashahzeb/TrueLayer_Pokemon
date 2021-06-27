@@ -1,6 +1,8 @@
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Infrastructure.Configuration;
@@ -43,5 +45,24 @@ namespace TestHelper
 
             return (new PokemonApiHttpClient(httpClient, httpClientConfiguration), handlerMock);
         }
+        
+        public static string GetPokemonSampleResponse()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = assembly.GetName().Name + ".Resources.PokemonApiResponse.json";
+            using Stream stream = assembly.GetManifestResourceStream(resourceName);
+            using StreamReader reader = new StreamReader(stream);
+            return reader.ReadToEnd();
+        }
+    }
+    
+    public class Contents
+    {
+        public string translated { get; set; }
+    }
+
+    public class Root
+    {
+        public Contents contents { get; set; }
     }
 }

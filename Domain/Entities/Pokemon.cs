@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Domain.Abstraction;
 
-namespace Domain.Entity
+namespace Domain.Entities
 {
     public class Pokemon : IPokemon
     {

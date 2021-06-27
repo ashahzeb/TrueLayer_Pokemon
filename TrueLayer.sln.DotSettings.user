@@ -11,5 +11,14 @@
     &lt;TestId&gt;xUnit::14DCF018-5DDA-43B5-9CD4-28180A7AFF4F::net5.0::Persistence.UnitTests.Repositories.PokemonRepository_Should.Get_Successfully&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::14DCF018-5DDA-43B5-9CD4-28180A7AFF4F::net5.0::Persistence.UnitTests.Repositories.PokemonRepository_Should.ReturnPokemon_When_ApiResponseIsCorrect&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::14DCF018-5DDA-43B5-9CD4-28180A7AFF4F::net5.0::Persistence.UnitTests.Repositories.PokemonRepository_Should.ThrowException_When_ApiResponseHasADifferentStructure&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::14DCF018-5DDA-43B5-9CD4-28180A7AFF4F::net5.0::Persistence.UnitTests.Queries.GetPokemonQuery_Should.ReturnPokemon&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::14DCF018-5DDA-43B5-9CD4-28180A7AFF4F::net5.0::Persistence.UnitTests.Repositories.TranslatorRepository_Should&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::340A7038-B525-4259-988B-574B2D00DE24::net5.0::RestAPI.UnitTests.Controllers.PokemonController_Should.GetPokemon_SuccessfullyFound&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::340A7038-B525-4259-988B-574B2D00DE24::net5.0::RestAPI.UnitTests.Controllers.PokemonController_Should&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::7905ABC6-E9A3-4B1A-B4A0-FB0567E1848F::net5.0::RestAPI.UnitTests.UnitTest1.ReturnPokemon_When_FoundSuccessfully&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::7905ABC6-E9A3-4B1A-B4A0-FB0567E1848F::net5.0::RestAPI.UnitTests.PokemonCobntroller_Should.ReturnPokemon_When_FoundSuccessfully&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::7905ABC6-E9A3-4B1A-B4A0-FB0567E1848F::net5.0::RestAPI.UnitTests.PokemonCobntroller_Should.GetPokemon_UnsuccessfullyFound&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::7905ABC6-E9A3-4B1A-B4A0-FB0567E1848F::net5.0::RestAPI.UnitTests.PokemonCobntroller_Should&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::DF18F390-A495-4693-935B-69A110E70840::net5.0::RestAPI.IntegrationTests.Controllers.PokemonController_Should&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

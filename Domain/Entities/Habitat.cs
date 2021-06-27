@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Domain.Entity
+namespace Domain.Entities
 {
     public class Habitat
     {

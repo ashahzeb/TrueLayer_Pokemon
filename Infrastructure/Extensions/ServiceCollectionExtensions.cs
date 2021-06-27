@@ -1,8 +1,6 @@
 using System;
 using Infrastructure.Configuration;
 using Infrastructure.HttpClients;
-using Infrastructure.RequestBehaviors;
-using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -14,26 +12,18 @@ namespace Infrastructure.Extensions
         public static IServiceCollection AddInfrastructure(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddMediatorRequestLogging()
-                .AddConfiguration<IHttpClientConfiguration, HttpClientConfiguration>(configuration)
-                .AddTransient<IPokemonApiHttpClient, PokemonApiHttpClient>()
-                .AddTransient<ITranslationApiHttpClient, TranslationApiHttpClient>();
-
-            services.AddHttpClient<PokemonApiHttpClient>((provider, client) =>
+            services
+                .AddConfiguration<IHttpClientConfiguration, HttpClientConfiguration>(configuration);
+            
+            services.AddHttpClient<IPokemonApiHttpClient, PokemonApiHttpClient>((provider, client) =>
                 client.BaseAddress = new Uri(provider.GetService<IHttpClientConfiguration>().PokemonApiBaseUrl));
                 
-            services.AddHttpClient<TranslationApiHttpClient>((provider, client) =>
+            services.AddHttpClient<ITranslationApiHttpClient, TranslationApiHttpClient>((provider, client) =>
                 client.BaseAddress = new Uri(provider.GetService<IHttpClientConfiguration>().TranslatorApiBaseUrl));
 
-            return services;
+                return services;
         }
-
         
-
-        private static IServiceCollection AddMediatorRequestLogging(this IServiceCollection services) =>
-            services
-                .AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestLoggingPipelineBehavior<,>));
-
         private static IServiceCollection AddConfiguration<TIConfiguration, TConfiguration>(this IServiceCollection serviceCollection, IConfiguration configuration)
             where TIConfiguration : class
             where TConfiguration : class, TIConfiguration, new()

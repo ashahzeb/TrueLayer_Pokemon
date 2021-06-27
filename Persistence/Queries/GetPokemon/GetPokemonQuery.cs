@@ -1,7 +1,9 @@
-namespace Persistence.Queries
+using Domain.Abstraction;
+using MediatR;
+
+namespace Persistence.Queries.GetPokemon
 {
-    public class GetPokemonQuery
+    public record GetPokemonQuery (string Name) : IRequest<IPokemon>
     {
-        
     }
 }

@@ -20,16 +20,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="PokemonApiResponse.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="Resources\PokemonApiResponse.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
       <ProjectReference Include="..\Persistence\Persistence.csproj" />
       <ProjectReference Include="..\TestHelper\TestHelper.csproj" />

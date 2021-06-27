@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Persistence.Repositories;
 
 namespace Persistence.Extensions
 {
@@ -7,14 +8,12 @@ namespace Persistence.Extensions
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services) => services
             .AddRepositories()
-            .AddServices()
             .AddQueries();
 
         private static IServiceCollection AddRepositories(this IServiceCollection services) =>
-            services;
-
-        private static IServiceCollection AddServices(this IServiceCollection services) =>
-            services;
+            services
+                .AddSingleton<IPokemonRepository, PokemonRepository>()
+                .AddSingleton<ITranslatorRepository, TranslatorRepository>();
 
         private static IServiceCollection AddQueries(this IServiceCollection services) =>
             services.AddMediatR(typeof(ServiceCollectionExtensions).Assembly);
